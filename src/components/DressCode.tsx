@@ -21,12 +21,12 @@ export function DressCode() {
     <div className="w-full flex justify-center py-24 bg-primary-dark text-champagne relative overflow-hidden">
       <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/floral-linen.png')]"></div>
       
-      <div className="flex flex-col items-center max-w-[1024px] flex-1 px-4 lg:px-8 z-10 text-center">
+      <div className="flex flex-col items-center max-w-[1024px] flex-1 px-4 lg:px-8 z-10 text-center w-full">
         <span className="material-symbols-outlined text-5xl text-secondary mb-6">checkroom</span>
-        <h2 className="text-4xl md:text-5xl font-display mb-6 tracking-widest uppercase">Código de Vestimenta</h2>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-display mb-6 tracking-widest uppercase break-words px-2 w-full">Código de Vestimenta</h2>
         <div className="w-16 h-[1px] bg-secondary mb-8"></div>
         <p className="text-3xl font-serif italic text-white/90 mb-4">Formal</p>
-        <p className="text-lg font-serif text-white/70 mb-12 max-w-md">
+        <p className="text-lg font-serif text-white/70 mb-12 max-w-md px-4">
           Sugerimos vestido largo para las damas y traje oscuro para los caballeros.
         </p>
 
@@ -34,7 +34,7 @@ export function DressCode() {
         <div className="flex bg-white/10 p-1 rounded-full mb-10 w-full max-w-sm mx-auto backdrop-blur-sm border border-white/10 relative z-20">
           <button
             onClick={() => setActiveTab('mujeres')}
-            className={`flex-1 py-3 px-6 rounded-full font-display uppercase tracking-widest text-xs transition-all duration-300 ${
+            className={`flex-1 py-3 px-4 sm:px-6 rounded-full font-display uppercase tracking-widest text-xs transition-all duration-300 ${
               activeTab === 'mujeres' 
                 ? 'bg-secondary text-primary shadow-md' 
                 : 'text-white/70 hover:text-white'
@@ -44,7 +44,7 @@ export function DressCode() {
           </button>
           <button
             onClick={() => setActiveTab('hombres')}
-            className={`flex-1 py-3 px-6 rounded-full font-display uppercase tracking-widest text-xs transition-all duration-300 ${
+            className={`flex-1 py-3 px-4 sm:px-6 rounded-full font-display uppercase tracking-widest text-xs transition-all duration-300 ${
               activeTab === 'hombres' 
                 ? 'bg-secondary text-primary shadow-md' 
                 : 'text-white/70 hover:text-white'
@@ -55,7 +55,7 @@ export function DressCode() {
         </div>
 
         {/* Mobile-First Gallery (Horizontal Scroll on Mobile, Grid on Desktop) */}
-        <div className="w-full max-w-4xl mx-auto relative z-20 overflow-hidden">
+        <div className="w-full max-w-4xl mx-auto relative z-20">
           <AnimatePresence mode="wait">
             <motion.div
               key={activeTab}
@@ -63,7 +63,7 @@ export function DressCode() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: '100vw' }}
               transition={{ duration: 0.5, ease: "easeInOut" }}
-              className="flex sm:grid sm:grid-cols-3 gap-4 md:gap-8 overflow-x-auto pb-8 -mx-4 px-4 sm:mx-0 sm:px-0 sm:overflow-visible sm:pb-0 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden"
+              className="flex sm:grid sm:grid-cols-3 gap-4 md:gap-8 overflow-x-auto pb-8 px-4 sm:px-0 sm:overflow-visible sm:pb-0 snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden"
               style={{ scrollbarWidth: 'none' }}
             >
               {images[activeTab].map((src, index) => (
@@ -89,7 +89,7 @@ export function DressCode() {
           </AnimatePresence>
         </div>
         
-        <div className="mt-12 p-4 border border-secondary/30 rounded-xl bg-white/5 backdrop-blur-sm max-w-2xl mx-auto">
+        <div className="mt-12 p-4 border border-secondary/30 rounded-xl bg-white/5 backdrop-blur-sm max-w-2xl mx-auto w-full">
           <p className="text-sm font-display tracking-widest uppercase text-white/70 flex items-center justify-center gap-2">
             <span className="material-symbols-outlined text-secondary">info</span>
             Nota importante

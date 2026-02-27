@@ -1,7 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 
 export function Hero() {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < 768 : false
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   const scrollToRSVP = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const element = document.getElementById('rsvp-section');
@@ -42,12 +54,12 @@ export function Hero() {
   };
 
   const imageVariants = {
-    hidden: { opacity: 0, scale: 0.95, filter: 'sepia(100%) blur(10px)' },
+    hidden: isMobile ? { opacity: 1, scale: 1, filter: 'sepia(0%) blur(0px)' } : { opacity: 0, scale: 0.95, filter: 'sepia(100%) blur(10px)' },
     visible: { 
       opacity: 1, 
       scale: 1, 
       filter: 'sepia(0%) blur(0px)',
-      transition: { duration: 1.5, ease: "easeOut" } 
+      transition: { duration: 0.8, ease: "easeOut" } 
     },
   };
 
@@ -127,9 +139,9 @@ export function Hero() {
               
               <div className="relative w-full aspect-[3/4] rounded-t-full rounded-b-[10rem] overflow-hidden shadow-card border-4 border-white z-10">
                 <motion.div 
-                  initial={{ scale: 1.2 }}
+                  initial={{ scale: isMobile ? 1 : 1.2 }}
                   animate={{ scale: 1 }}
-                  transition={{ duration: 2, ease: "easeOut" }}
+                  transition={{ duration: 1, ease: "easeOut" }}
                   className="absolute inset-0 bg-cover bg-center" 
                   style={{backgroundImage: 'url("https://i.postimg.cc/MZhLKDkn/hero-vintage.jpg")'}}
                 ></motion.div>
@@ -137,7 +149,7 @@ export function Hero() {
               </div>
               
               <motion.div 
-                initial={{ opacity: 0, rotate: -45 }}
+                initial={{ opacity: isMobile ? 0.8 : 0, rotate: isMobile ? 0 : -45 }}
                 animate={{ opacity: 0.8, rotate: 0 }}
                 transition={{ duration: 1.5, delay: 1.2, ease: "easeOut" }}
                 className="absolute -bottom-8 -right-8 w-32 h-32 z-20 pointer-events-none text-secondary"
