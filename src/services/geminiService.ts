@@ -1,9 +1,21 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+let ai: GoogleGenAI | null = null;
+
+function getAi() {
+  if (!ai) {
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      throw new Error("GEMINI_API_KEY environment variable is required");
+    }
+    ai = new GoogleGenAI({ apiKey });
+  }
+  return ai;
+}
 
 export async function editImage(base64ImageData: string, mimeType: string, prompt: string): Promise<string> {
-  const response = await ai.models.generateContent({
+  const aiClient = getAi();
+  const response = await aiClient.models.generateContent({
     model: 'gemini-2.5-flash-image',
     contents: {
       parts: [
