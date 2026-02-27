@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #2D5D6E;
+  --color-primary-dark: #1A3C4A;
+  --color-secondary: #C9A66B;
+  --color-secondary-light: #E5D4B3;
+  --color-champagne: #F3EAC2;
+  --color-background-light: #FAF7F0;
+  --color-background-dark: #1F2326;
+  --color-accent: #B85C38;
+  --color-paper: #FDFBF7;
+
+  --font-display: "Italiana", serif;
+  --font-serif: "Josefin Slab", serif;
+  --font-script: "Pinyon Script", cursive;
+
+  --background-image-art-deco-pattern: url('https://www.transparenttextures.com/patterns/clean-gray-paper.png');
+  --background-image-vintage-paper: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+
+  --shadow-glow: 0 0 15px rgba(201, 166, 107, 0.3);
+  --shadow-card: 5px 5px 15px rgba(45, 93, 110, 0.15);
+
+  --radius-arch: 150px 150px 20px 20px;
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+  }
+  .border-art-nouveau {
+    border-width: 2px;
+    border-style: solid;
+    border-color: var(--color-secondary);
+  }
+  .clip-arch {
+    clip-path: ellipse(80% 90% at 50% 10%);
+  }
+  .clip-arch-inverted {
+    clip-path: ellipse(80% 90% at 50% 90%);
+  }
+}
+
+body {
+  @apply bg-background-light text-slate-800 font-serif min-h-screen flex flex-col bg-vintage-paper selection:bg-secondary selection:text-white;
+}
